@@ -27,6 +27,8 @@ function preload() {
     game.load.image('bullet', 'assets/bullet.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     game.load.spritesheet('baddie','assets/baddie.png',32,32);
+    game.load.spritesheet('expo','assets/expo.png',48,48);
+
 }
 
 var player;
@@ -46,6 +48,7 @@ var nextfire = 0;
 var firstaids;
 
 var enemy1;
+var expolsion;
 function create() {
 
     //  We're going to be using physics, so enable the Arcade Physics system
@@ -206,7 +209,6 @@ function update() {
             if (facing == 'left')
             {
                 player.frame = 0;
-                console.log('left');
             }
             else
             {
@@ -242,6 +244,9 @@ function update() {
 function kill(enemy, bullets){
     enemy.kill();
     bullets.kill();
+    expolsion = game.add.sprite(enemy.x,enemy.y,'expo');
+    expolsion.animations.add('explode',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48],20,false);
+    expolsion.animations.play('explode');
 }
 
 function fire() {
