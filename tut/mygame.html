@@ -161,7 +161,9 @@ function create() {
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
 
-
+    expolsion = game.add.sprite(enemy1.x,enemy1.y-20,'expo');
+    expolsion.exists = false;
+    expolsion.animations.add('explode',[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46],20,false);
 }
 
 function update() {
@@ -245,9 +247,9 @@ function update() {
 function kill(enemy, bullets){
     enemy.kill();
     bullets.kill();
-    expolsion = game.add.sprite(enemy.x,enemy.y,'expo');
-    expolsion.animations.add('explode',[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46],20,false);
-    expolsion.animations.play('explode');
+    expolsion.exists = true;
+    expolsion.x = enemy.x;
+    expolsion.animations.play('explode',null,false,true);
 }
 
 function fire() {
